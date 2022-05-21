@@ -235,9 +235,10 @@ class FirstNamesInflection extends \morphos\NamesInflection implements Cases
                     }
                 }
             }
+
+            $name = S::name($name);
         }
 
-        $name = S::name($name);
         return array_fill_keys(array(static::IMENIT, static::RODIT, static::DAT, static::VINIT, static::TVORIT, static::PREDLOJ), $name);
     }
 
