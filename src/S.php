@@ -245,4 +245,9 @@ class S
         }
         return false;
     }
+
+    public static function isUpper($word)
+    {
+        return mb_strtoupper($word, 'utf-8') === $word;
+    }
 }

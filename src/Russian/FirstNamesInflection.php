@@ -86,6 +86,10 @@ class FirstNamesInflection extends \morphos\NamesInflection implements Cases
      */
     public static function isMutable($name, $gender = null)
     {
+        if (S::isUpper($name)) {
+            return false;
+        }
+
         $name = S::lower($name);
 
         if (in_array($name, static::$immutableNames, true)) {
@@ -191,9 +195,9 @@ class FirstNamesInflection extends \morphos\NamesInflection implements Cases
      */
     public static function getCases($name, $gender = null)
     {
-        $name = S::lower($name);
-
         if (static::isMutable($name, $gender)) {
+            $name = S::lower($name);
+
             // common rules for ия and я
             if (S::slice($name, -2) == 'ия') {
                 $prefix = S::name(S::slice($name, 0, -1));

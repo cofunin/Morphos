@@ -22,6 +22,9 @@ class LastNamesInflection extends \morphos\NamesInflection implements Cases
      */
     public static function isMutable($name, $gender = null)
     {
+        if (S::isUpper($name)) {
+            return false;
+        }
         $name = S::lower($name);
         if ($gender === null) {
             $gender = static::detectGender($name);
@@ -103,7 +106,6 @@ class LastNamesInflection extends \morphos\NamesInflection implements Cases
      */
     public static function getCases($name, $gender = null)
     {
-        $name = S::lower($name);
         if ($gender === null) {
             $gender = static::detectGender($name);
         }
@@ -120,6 +122,8 @@ class LastNamesInflection extends \morphos\NamesInflection implements Cases
         }
 
         if (static::isMutable($name, $gender)) {
+            $name = S::lower($name);
+
             if ($gender == static::MALE) {
                 if (in_array(S::slice($name, -2), ['ов', 'ев', 'ин', 'ын', 'ёв'], true)) {
                     $prefix = S::name($name);
