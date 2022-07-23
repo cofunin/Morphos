@@ -285,6 +285,7 @@ trait RussianLanguage
     public static function in($word)
     {
         $normalized = trim(S::lower($word));
+        $normalized = trim($normalized, '«»');
         if (in_array(S::slice($normalized, 0, 1), ['в', 'ф'], true))
             return 'во '.$word;
         return 'в '.$word;
@@ -298,6 +299,7 @@ trait RussianLanguage
     public static function with($word)
     {
         $normalized = trim(S::lower($word));
+        $normalized = trim($normalized, '«»');
         if (in_array(S::slice($normalized, 0, 1), ['с', 'з', 'ш', 'ж'], true) && static::isConsonant(S::slice($normalized, 1, 2)) || S::slice($normalized, 0, 1) === 'щ')
             return 'со '.$word;
         return 'с '.$word;
@@ -311,6 +313,7 @@ trait RussianLanguage
     public static function about($word)
     {
         $normalized = trim(S::lower($word));
+        $normalized = trim($normalized, '«»');
         if (static::isVowel(S::slice($normalized, 0, 1)) && !in_array(S::slice($normalized, 0, 1), ['е', 'ё', 'ю', 'я'], true))
             return 'об '.$word;
 
